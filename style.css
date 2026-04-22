@@ -1,0 +1,210 @@
+/* チョコの72時間 - 家族限定サイト スタイル */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Noto Serif JP", "游明朝", "Yu Mincho", "ヒラギノ明朝 ProN", serif;
+  background: #f6f3ee;
+  color: #2b2b2b;
+  line-height: 1.9;
+  font-size: 17px;
+  padding: 40px 20px 80px;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #fffdf9;
+  padding: 60px 50px;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+header.site-header {
+  max-width: 720px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+header.site-header .tag {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: #8b7355;
+  margin-bottom: 8px;
+}
+
+header.site-header a {
+  color: #8b7355;
+  text-decoration: none;
+  font-size: 13px;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+h1.site-title { font-size: 34px; margin-bottom: 20px; text-align: center; }
+
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 50px 0 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd4c4;
+  color: #1a1a1a;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 30px 0 12px;
+  color: #3a3a3a;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #6b6b6b;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5dfd2;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+}
+
+p { margin-bottom: 1.2em; }
+
+blockquote {
+  border-left: 3px solid #c4a77d;
+  background: #f7f2e8;
+  padding: 14px 20px;
+  margin: 20px 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #3a3a3a;
+}
+
+blockquote p { margin-bottom: 0.4em; }
+blockquote p:last-child { margin-bottom: 0; }
+
+hr {
+  border: none;
+  border-top: 1px solid #e5dfd2;
+  margin: 40px 0;
+}
+
+strong { color: #1a1a1a; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 14px;
+}
+
+th, td {
+  padding: 10px 12px;
+  border: 1px solid #e5dfd2;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f1ebdd;
+  font-weight: 500;
+}
+
+ul, ol { margin: 12px 0 20px 24px; }
+li { margin-bottom: 6px; }
+
+.meta {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  color: #8b7355;
+  margin-bottom: 10px;
+}
+
+.time-marker {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  color: #5a4a30;
+  margin-right: 8px;
+}
+
+.final-lines {
+  text-align: center;
+  margin: 60px 0 20px;
+  font-size: 19px;
+  line-height: 2.4;
+  color: #2b2b2b;
+}
+
+nav.site-nav {
+  max-width: 720px;
+  margin: 30px auto 0;
+  text-align: center;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+}
+nav.site-nav a {
+  color: #8b7355;
+  text-decoration: none;
+  margin: 0 12px;
+}
+nav.site-nav a:hover { color: #5a4a30; text-decoration: underline; }
+
+.toc-card {
+  border: 1px solid #e5dfd2;
+  padding: 24px 28px;
+  margin: 20px 0;
+  background: #fdfaf3;
+  border-radius: 4px;
+}
+.toc-card h3 { margin-top: 0; }
+.toc-card a {
+  color: #2b2b2b;
+  text-decoration: none;
+  border-bottom: 1px dotted #c4a77d;
+}
+.toc-card a:hover { color: #5a4a30; }
+.toc-card .toc-meta {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 12px;
+  color: #8b7355;
+  margin-top: 6px;
+}
+
+.note-box {
+  background: #f7f2e8;
+  border-left: 3px solid #c4a77d;
+  padding: 14px 20px;
+  margin: 30px 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  color: #5a4a30;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  body { padding: 20px 10px 60px; font-size: 16px; }
+  .container { padding: 30px 22px; }
+  h1 { font-size: 23px; }
+  h1.site-title { font-size: 26px; }
+  h2 { font-size: 18px; }
+  blockquote { padding: 12px 16px; font-size: 14px; }
+  table { font-size: 13px; }
+}
+
+@media print {
+  body { background: white; padding: 0; }
+  .container { box-shadow: none; padding: 20px; }
+  nav.site-nav, header.site-header { display: none; }
+}
