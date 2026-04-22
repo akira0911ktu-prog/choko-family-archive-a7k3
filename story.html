@@ -9,6 +9,8 @@
 </head>
 <body>
 
+<div class="progress-bar"></div>
+
 <header class="site-header">
   <div class="tag">FAMILY ARCHIVE ｜ 別編3・ショートストーリー</div>
   <a href="index.html">← マガジン目次へ</a>
@@ -250,6 +252,28 @@
   <a href="index.html">目次</a>｜
   <a href="honpen.html">本編</a>
 </nav>
+
+<button class="back-to-top" id="backToTop" aria-label="トップに戻る">↑</button>
+
+<script>
+(function(){
+  var targets = document.querySelectorAll('h2, h3, blockquote, .note-box, .final-lines');
+  targets.forEach(function(el){ el.classList.add('reveal'); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach(function(el){ io.observe(el); });
+  } else { targets.forEach(function(el){ el.classList.add('visible'); }); }
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 400) btn.classList.add('visible'); else btn.classList.remove('visible');
+  });
+  btn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+})();
+</script>
 
 </body>
 </html>

@@ -7,93 +7,186 @@
 <title>チョコの72時間 | 家族限定アーカイブ</title>
 <link rel="stylesheet" href="style.css">
 <style>
+  /* Password gate */
   #gate {
-    position: fixed; inset: 0; background: #f6f3ee;
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(212, 148, 90, 0.18), transparent 55%),
+      radial-gradient(ellipse at 80% 75%, rgba(184, 89, 56, 0.14), transparent 55%),
+      linear-gradient(135deg, #141d2c 0%, #1c2838 50%, #2a3a50 100%);
     display: flex; align-items: center; justify-content: center;
     z-index: 9999; flex-direction: column; padding: 20px;
   }
-  #gate .box {
-    background: #fffdf9; padding: 40px 32px; max-width: 360px; width: 100%;
-    text-align: center; border-radius: 4px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  #gate::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20% 30%, rgba(255, 220, 170, 0.3), transparent),
+      radial-gradient(1px 1px at 60% 50%, rgba(255, 220, 170, 0.2), transparent),
+      radial-gradient(1.3px 1.3px at 80% 20%, rgba(255, 220, 170, 0.25), transparent),
+      radial-gradient(1.2px 1.2px at 40% 80%, rgba(255, 220, 170, 0.18), transparent);
+    pointer-events: none;
   }
-  #gate h2 { border: none; font-size: 18px; margin: 0 0 8px; padding: 0; }
-  #gate p { font-family: "Noto Sans JP", sans-serif; font-size: 13px; color: #6b6b6b; margin-bottom: 20px; }
+  #gate .box {
+    position: relative;
+    background: rgba(255, 252, 245, 0.98);
+    padding: 48px 36px;
+    max-width: 380px; width: 100%;
+    text-align: center;
+    border-radius: 18px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+  }
+  #gate .gate-tag {
+    display: inline-block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: #b85938;
+    padding: 5px 14px;
+    background: #fbe6d8;
+    border-radius: 100px;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  #gate h2 {
+    border: none; font-family: "Shippori Mincho", serif;
+    font-size: 22px; margin: 0 0 10px; padding: 0;
+    letter-spacing: 0.05em; font-weight: 700;
+    color: #1a1612;
+  }
+  #gate h2::before { display: none; }
+  #gate p {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 12.5px;
+    color: #7d7365; margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
   #gate input {
-    width: 100%; padding: 10px 12px; font-size: 15px; border: 1px solid #ddd4c4;
-    border-radius: 3px; margin-bottom: 12px; font-family: "Noto Sans JP", sans-serif;
+    width: 100%; padding: 12px 14px;
+    font-size: 16px;
+    border: 1px solid #e5dac4;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    font-family: "JetBrains Mono", monospace;
+    text-align: center;
+    letter-spacing: 0.3em;
+    background: #fffcf5;
+    color: #1a1612;
+    transition: border-color 0.2s;
+  }
+  #gate input:focus {
+    outline: none;
+    border-color: #b85938;
+    box-shadow: 0 0 0 3px rgba(184, 89, 56, 0.1);
   }
   #gate button {
-    width: 100%; padding: 10px; font-size: 14px; background: #8b7355; color: #fff;
-    border: none; border-radius: 3px; cursor: pointer; font-family: "Noto Sans JP", sans-serif;
+    width: 100%; padding: 12px;
+    font-size: 13.5px;
+    background: linear-gradient(135deg, #b85938, #8a3a1f);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    transition: all 0.2s;
   }
-  #gate button:hover { background: #5a4a30; }
-  #gate .hint { font-size: 11px; color: #a09080; margin-top: 14px; }
+  #gate button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(184, 89, 56, 0.3);
+  }
+  #gate .hint {
+    font-size: 11px; color: #a09080;
+    margin-top: 18px; letter-spacing: 0.03em;
+  }
   body.locked { overflow: hidden; }
 </style>
 </head>
 <body class="locked">
 
+<div class="progress-bar"></div>
+
 <div id="gate">
   <div class="box">
-    <h2>家族限定アーカイブ</h2>
-    <p>合言葉を入力してください</p>
+    <div class="gate-tag">FAMILY ARCHIVE</div>
+    <h2>合言葉</h2>
+    <p>家族限定アーカイブです</p>
     <form id="gate-form">
-      <input type="password" id="gate-input" autocomplete="off" autofocus>
-      <button type="submit">開く</button>
+      <input type="password" id="gate-input" autocomplete="off" autofocus maxlength="12">
+      <button type="submit">ひらく</button>
     </form>
     <div class="hint">ヒント：チョコがいなくなった日（MMDD）</div>
   </div>
 </div>
 
-<header class="site-header">
-  <div class="tag">FAMILY ARCHIVE</div>
-  <a href="index.html">マガジン『チョコの72時間』</a>
-</header>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-tag">FAMILY ARCHIVE ・ 2025 SUMMER</div>
+  <h1>チョコの72時間</h1>
+  <p class="hero-sub">
+    2025年6月16日、朝9時。<br>
+    埼玉県春日部市から、一匹のチワワが消えた。<br>
+    ── 家族と、SNSで集まった十六人の他人の、七十二時間の記録。
+  </p>
+  <div class="hero-date">JUN 16 – JUN 18 ・ 2025</div>
+</section>
+
+<!-- Stats strip -->
+<div class="stats-strip">
+  <div class="stat">
+    <span class="stat-num">72<span class="stat-num-unit">h</span></span>
+    <span class="stat-label">HOURS LOST</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">1.2<span class="stat-num-unit">km</span></span>
+    <span class="stat-label">STRAIGHT LINE</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">16<span class="stat-num-unit">人</span></span>
+    <span class="stat-label">VOLUNTEERS</span>
+  </div>
+</div>
 
 <div class="container">
-  <h1 class="site-title">チョコの72時間</h1>
-  <p class="subtitle" style="text-align:center; border:none; padding-bottom:0;">
-    2025年6月16日〜18日／埼玉県春日部市・宮代町<br>
-    ──迷子になった一匹のチワワをめぐる、72時間の記録
-  </p>
 
   <div class="note-box">
     このアーカイブは、加藤家の家族内共有のために作成された非公開サイトです。<br>
-    本編は事実の記録、別編1は犬視点のフィクション、別編2は考察です。<br>
-    外部への転載・SNSへの引用はご遠慮ください。
+    本編は事実の記録、別編は犬視点のフィクション・考察・感情記録、公開用は note／SNS 拡散用の最終版です。<br>
+    外部への無断転載・SNSへの引用はご遠慮ください。
   </div>
 
   <h2>収録作品</h2>
 
-  <div class="toc-card" style="border-color:#c4a77d; background:#fff6e0;">
-    <h3 style="color:#8b5a2b;"><a href="note.html">★ 公開用『まだ、諦めないで。──チョコを探した72時間』</a></h3>
-    <p style="margin: 8px 0 4px;">迷子犬を探している飼い主が検索窓から流入してきた瞬間を想定し、行動転換まで一気に導く公開用最終版。本編・別編を圧縮統合し、章間に「▶ 今、探しているあなたへ」のマイクロ助言を差し込み、巻末に「今日やるべき15のこと」を配置。note／SNS拡散用。</p>
-    <div class="toc-meta">note公開・SNS拡散用／150点版</div>
-  </div>
-
-
-  <div class="toc-card">
-    <h3><a href="honpen.html">本編『チョコの72時間』</a></h3>
-    <p style="margin: 8px 0 4px;">6月16日朝9時、春日部市内牧の実家からチョコが消えた。警察・保健所への通報、聞き込み、ポスター貼り、SNS拡散、ボランティアの合流、そして6月18日夜22時25分の保護──LINE原文と時刻を追いながら、72時間を事実の順に並べた記録。</p>
-    <div class="toc-meta">ドキュメンタリー／LINE原文引用あり</div>
+  <div class="toc-card featured">
+    <h3><a href="note.html">★ 公開用『まだ、諦めないで。──チョコを探した72時間』</a></h3>
+    <p>迷子犬を探している飼い主が検索窓から流入してきた瞬間を想定し、行動転換まで一気に導く公開用最終版。本編・別編を圧縮統合し、章間に「今、探しているあなたへ」のマイクロ助言を差し込み、巻末に「今日やるべき15のこと」を配置。</p>
+    <span class="toc-meta">NOTE公開・SNS拡散用 ／ 150点版</span>
   </div>
 
   <div class="toc-card">
-    <h3><a href="bouken.html">別編1『チョコの大冒険』</a></h3>
-    <p style="margin: 8px 0 4px;">門の隙間から出てしまったチョコの視点で、72時間を描いた短編フィクション。匂い、音、足裏の感覚、猛暑、西光院の縁の下、五社神社の墓地、隼人堀川の土手──犬が見ていたかもしれない世界を、事実から離れすぎない範囲で想像した。</p>
-    <div class="toc-meta">フィクション／犬視点</div>
+    <h3><a href="honpen.html">01 ・ 本編『チョコの72時間』</a></h3>
+    <p>6月16日朝9時、春日部市内牧の実家からチョコが消えた。警察・保健所への通報、聞き込み、ポスター貼り、SNS拡散、ボランティアの合流、そして6月18日夜22時25分の保護──LINE原文と時刻を追いながら、72時間を事実の順に並べた記録。</p>
+    <span class="toc-meta">ドキュメンタリー ／ LINE原文引用</span>
   </div>
 
   <div class="toc-card">
-    <h3><a href="kousatsu.html">別編2『あの3日間から学んだこと』</a></h3>
-    <p style="margin: 8px 0 4px;">本編の事実を踏まえて、初動・地理・SNS運用・ネガティブコメントへの対処・家族の役割分担について振り返った考察。同じように迷子犬を探している人の参考になる部分があれば、という記録。</p>
-    <div class="toc-meta">考察／データ表あり</div>
+    <h3><a href="bouken.html">02 ・ 別編1『チョコの大冒険』</a></h3>
+    <p>門の隙間から出てしまったチョコの視点で、72時間を描いた短編フィクション。匂い、音、足裏の感覚、猛暑、西光院の縁の下、五社神社の墓地、隼人堀川の土手──犬が見ていたかもしれない世界を、事実から離れすぎない範囲で想像した。</p>
+    <span class="toc-meta">フィクション ／ 犬視点</span>
   </div>
 
   <div class="toc-card">
-    <h3><a href="story.html">別編3『その人の名前を、まだ知らない』</a></h3>
-    <p style="margin: 8px 0 4px;">本編の事実をもとに、家族それぞれの感情の機微を時系列で追った短編。気づかないまま過ぎた5時間、渋谷を駆け下りる勇輝、プリンターの前の母、父がスコップと段ボールを車に積んで向かった「絶望と覚悟」の三時間、エネオスの蛍光灯の下、そして「帰ってきたから泣いた」母の涙まで──18の断章で編んだ感情の記録。</p>
-    <div class="toc-meta">ショートストーリー／感情の記録</div>
+    <h3><a href="kousatsu.html">03 ・ 別編2『あの3日間から学んだこと』</a></h3>
+    <p>本編の事実を踏まえて、初動・地理・SNS運用・ネガティブコメントへの対処・家族の役割分担について振り返った考察。同じように迷子犬を探している人の参考になる部分があれば、という記録。</p>
+    <span class="toc-meta">考察 ／ データ表あり</span>
+  </div>
+
+  <div class="toc-card">
+    <h3><a href="story.html">04 ・ 別編3『その人の名前を、まだ知らない』</a></h3>
+    <p>本編の事実をもとに、家族それぞれの感情の機微を時系列で追った短編。気づかないまま過ぎた5時間、渋谷を駆け下りる勇輝、プリンターの前の母、父がスコップと段ボールを車に積んで向かった「絶望と覚悟」の三時間、エネオスの蛍光灯の下、そして「帰ってきたから泣いた」母の涙まで──18の断章で編んだ感情の記録。</p>
+    <span class="toc-meta">ショートストーリー ／ 感情の記録</span>
   </div>
 
   <hr>
@@ -109,23 +202,25 @@
     <li>個人名はLINEの表記に合わせています</li>
   </ul>
 
-  <p style="text-align: right; font-family: 'Noto Sans JP', sans-serif; font-size: 12px; color: #8b7355; margin-top: 40px;">
-    編纂：加藤家／2026年4月
+  <p style="text-align: right; font-family: 'Noto Sans JP', sans-serif; font-size: 11.5px; color: #7d7365; margin-top: 48px; letter-spacing: 0.08em;">
+    編纂：加藤家 ／ 2026年4月
   </p>
 </div>
 
 <nav class="site-nav">
-  <a href="honpen.html">本編</a>｜
-  <a href="bouken.html">別編1</a>｜
-  <a href="kousatsu.html">別編2</a>｜
-  <a href="story.html">別編3</a>｜
-  <a href="note.html">★公開用</a>
+  <a href="note.html">★ 公開用</a>
+  <a href="honpen.html">本編</a>
+  <a href="bouken.html">別編1</a>
+  <a href="kousatsu.html">別編2</a>
+  <a href="story.html">別編3</a>
 </nav>
+
+<button class="back-to-top" id="backToTop" aria-label="トップに戻る">↑</button>
 
 <script>
 (function(){
-  // 簡易パスワードゲート（家族共有用。暗号強度は無し）
-  var PASS = "0616"; // チョコがいなくなった日
+  // Password gate
+  var PASS = "0616";
   var KEY = "choko72_unlocked";
   var gate = document.getElementById("gate");
   var form = document.getElementById("gate-form");
@@ -134,18 +229,45 @@
   if (sessionStorage.getItem(KEY) === "1") {
     gate.style.display = "none";
     document.body.classList.remove("locked");
-    return;
+  } else {
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (input.value.trim() === PASS) {
+        sessionStorage.setItem(KEY, "1");
+        gate.style.display = "none";
+        document.body.classList.remove("locked");
+      } else {
+        input.value = "";
+        input.placeholder = "違います。もう一度";
+      }
+    });
   }
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    if (input.value.trim() === PASS) {
-      sessionStorage.setItem(KEY, "1");
-      gate.style.display = "none";
-      document.body.classList.remove("locked");
-    } else {
-      input.value = "";
-      input.placeholder = "違います。もう一度";
-    }
+
+  // Scroll reveal
+  var revealTargets = document.querySelectorAll('.toc-card, h2, .stats-strip');
+  revealTargets.forEach(function(el){ el.classList.add('reveal'); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealTargets.forEach(function(el){ io.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  // Back to top
+  var btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 400) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  });
+  btn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 })();
 </script>
