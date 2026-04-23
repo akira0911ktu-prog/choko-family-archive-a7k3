@@ -308,33 +308,7 @@
 
 </div>
 
-<nav class="site-nav">
-  <a href="index.html">マガジン目次</a>｜
-  <a href="honpen.html">本編（ドキュメンタリー）</a>｜
-  <a href="story.html">別編3（家族の感情記録）</a>
-</nav>
-
-<button class="back-to-top" id="backToTop" aria-label="トップに戻る">↑</button>
-
-<script>
-(function(){
-  var targets = document.querySelectorAll('h2, h3, blockquote, .you-box, .note-box, .action-block, .refrain, .final-lines');
-  targets.forEach(function(el){ el.classList.add('reveal'); });
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    targets.forEach(function(el){ io.observe(el); });
-  } else { targets.forEach(function(el){ el.classList.add('visible'); }); }
-  var btn = document.getElementById('backToTop');
-  window.addEventListener('scroll', function(){
-    if (window.scrollY > 400) btn.classList.add('visible'); else btn.classList.remove('visible');
-  });
-  btn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
-})();
-</script>
+<script src="nav.js"></script>
 
 </body>
 </html>
