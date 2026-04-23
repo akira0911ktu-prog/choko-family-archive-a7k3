@@ -386,6 +386,7 @@ nav.site-nav a:hover {
    TOC cards
    ========================================== */
 .toc-card {
+  display: block;
   position: relative;
   border: 1px solid var(--line);
   padding: 28px 32px;
@@ -395,7 +396,11 @@ nav.site-nav a:hover {
   transition: all 0.3s ease;
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
+.toc-card:hover { color: inherit; }
 .toc-card::before {
   content: "";
   position: absolute;
@@ -420,13 +425,10 @@ nav.site-nav a:hover {
   margin-top: 0; margin-bottom: 12px;
   font-size: clamp(16px, 1vw + 0.4rem, 18px);
   font-weight: 700;
-}
-.toc-card a {
   color: var(--ink);
-  text-decoration: none;
   transition: color 0.2s;
 }
-.toc-card:hover a { color: var(--accent-deep); }
+.toc-card:hover h3 { color: var(--accent-deep); }
 .toc-card p { font-size: 14px; line-height: 1.85; color: var(--ink-soft); margin: 0; }
 .toc-card .toc-meta {
   display: inline-block;
